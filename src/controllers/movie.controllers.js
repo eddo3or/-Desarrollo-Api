@@ -1,6 +1,6 @@
 const { response } = require('express');
 const Movie = require('../models/movie.model')
-const API_KEY = "5a8497c";
+const OMDB_API_KEY = process.env.OMDB_API_KEY;
 
 
 
@@ -29,7 +29,7 @@ function updateMovie (req, res){
 async function addMovie(req, res) {
     const title = req.params.title;
     try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${title}&plot=full`);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${encodeURIComponent(title)}&plot=full`);
         const data = await response.json();
 
         if (!data || data.Response === "False") {
