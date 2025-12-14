@@ -60,7 +60,7 @@ function removeMovie(id){
     const index = movieList.findIndex(t=> t.id===id);
     if(index ==-1)
         return false;
-    movieList.slice(index,1)
+    movieList.splice(index,1);
     return true;
 }
 
